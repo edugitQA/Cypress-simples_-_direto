@@ -7,6 +7,8 @@ beforeEach(() => {
     it('Cadastrar entradas', () => {
         criarTransacao("Freela", 200)
         cy.get("tbody tr td.description").should("have.text", "Freela")
+        criarTransacao("uber", 300)
+        cy.get("tbody tr td.description").should("have.text", "uber")
 
     });
     it('Cadastrar saidas', () => {
@@ -18,6 +20,7 @@ beforeEach(() => {
         criarTransacao("Freela", 120)
         criarTransacao("cafe", 10)
         cy.contains(".description", "Freela").parent().find('img').click()
+        cy.get('tbody tr').should("have.length", 1)
     })
 });
 
