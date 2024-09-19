@@ -1,16 +1,23 @@
 describe('Transações', () => {
+//hooks - before| after| beforeEach
+beforeEach(() => {
+    cy.visit('https://devfinance-agilizei.netlify.app/')
+});
+
     it('Cadastrar entradas', () => {
-        cy.visit('https://devfinance-agilizei.netlify.app/')
         criarTransacao("Freela", 200)
         cy.get("tbody tr td.description").should("have.text", "Freela")
 
     });
-
     it('Cadastrar saidas', () => {
-        cy.visit('https://devfinance-agilizei.netlify.app/')
         criarTransacao("Cinema", -56)
         cy.get("tbody tr td.description").should("have.text", "Cinema")
- 
+    })
+
+    it('Excluir transações', () => {
+        criarTransacao("Freela", 120)
+        criarTransacao("cafe", 10)
+        cy.contains(".description", "Freela").parent().find('img').click()
     })
 });
 
